@@ -1,3 +1,4 @@
+go () {
 # Debug
 debug_msg () {
   if [ -f ${HOME}/.bash_debug ]; then
@@ -624,3 +625,4 @@ stop_tftp_server () {
 
 debug_msg "leaving .bash_functions"
 # vim: set filetype=sh:
+go
