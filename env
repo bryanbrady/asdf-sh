@@ -314,6 +314,12 @@ if exists __git_complete; then
   __git_complete gu   _git_reset
 fi
 
+################################################################################
+# Docker                                                                       #
+################################################################################
+alias di='docker images'
+alias dps='docker ps'
+
 # Mac only
 if [[ $BB_OS == 'mac' ]]; then
     alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
