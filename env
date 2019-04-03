@@ -235,8 +235,6 @@ alias g="ag"
 alias h='history | ag'
 alias hist="history"
 alias ihstory='history'
-alias usbdev='find /dev -name "*usb*" 2> /dev/null'
-alias ttydev='find /dev -name "*tty*" 2> /dev/null'
 
 alias ppwd='pwd -P'
 if [[ $BB_OS == 'mac' ]]; then
@@ -637,6 +635,12 @@ start_tftp_server () {
 
 stop_tftp_server () {
   sudo launchctl unload -F /System/Library/LaunchDaemons/tftp.plist
+}
+
+# Serial port ttys
+ser ()
+{
+  find /dev -name "*usb*" -o -name "*tty*" 2> /dev/null | grep serial
 }
 
 debug_msg "leaving .bash_functions"
