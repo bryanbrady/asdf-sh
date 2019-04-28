@@ -315,14 +315,6 @@ if exists __git_complete; then
 fi
 
 ################################################################################
-# Docker                                                                       #
-################################################################################
-alias di='docker images'
-alias dps='docker ps -a'
-alias drm_untagged='docker rmi $(docker images | grep "^<none>" | awk "{print $1}")'
-alias drm_stopped='docker rm $(docker ps -a -q)'
-
-################################################################################
 # Rando Mac stuf                                                               #
 ################################################################################
 if [[ $BB_OS == 'mac' ]]; then
@@ -369,6 +361,27 @@ alias showBlocked='sudo ipfw list'
 debug_msg "leaving .bash_alias"
 
 # vim: set filetype=sh: 
+debug_msg "entering .bash_docker"
+
+################################################################################
+# Docker                                                                       #
+################################################################################
+di  () { docker images ;}
+dps () { docker ps -a ;}
+
+drm_untagged ()
+{
+  docker rmi $(docker images | grep '^<none>' | awk '{print $1}')
+}
+
+drm_stopped ()
+{
+  docker rm $(docker ps -a -q)
+}
+
+debug_msg "leaving .bash_docker"
+
+# vim: set filetype=sh:
 debug_msg "entering .bash_functions"
 
 ################################################################################
