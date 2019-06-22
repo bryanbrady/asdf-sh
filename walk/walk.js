@@ -1,14 +1,12 @@
 function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 var height = window.innerHeight;
 var width = window.innerWidth;
 var x = width / 2;
 var y = height / 2;
-var d = 10;
+var d = 20;
 
 function init() {
     var canvas = document.createElement("canvas");
@@ -20,17 +18,19 @@ function init() {
 }
 
 function draw() {
-  if (x < 0 || y < 0 || x > width || y > height) {
-      x = width / 2;
-      y = height / 2;
-  }
+  if ( x < 0 )       { x += width; }
+  if ( y < 0 )       { y += height; }
+  if ( x >= width  ) { x = x % width; }
+  if ( y >= height ) { y = y % height; }
+
   var canvas = document.getElementById('canvas');
   if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
+
     ctx.beginPath();
     ctx.moveTo(x,y);
-    x += getRandomInt(-d,d+1);
-    y += getRandomInt(-d,d+1);
+    x += getRandomInt(-d,d);
+    y += getRandomInt(-d,d);
     ctx.lineTo(x, y);
     ctx.stroke();
   }
